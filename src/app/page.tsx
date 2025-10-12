@@ -24,7 +24,7 @@ export default function Home() {
             className="mx-auto h-auto w-[40vw]"
           />
         </div>
-        <p className="font-wdxl text-md pt-2 sm:pt-0 sm:text-2xl">
+        <p className="font-wdxl pt-2 text-xl sm:pt-0 sm:text-2xl">
           LAUNCHING WINTER 2025
         </p>
         <Link href="/apply">
