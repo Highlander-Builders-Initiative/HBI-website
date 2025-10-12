@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-[95vh] items-center justify-center px-6">
+    <main className="flex min-h-[85vh] items-center justify-center px-6">
       <div className="text-center">
         {/* Show text at sm and above */}
         <div className="hidden sm:block">

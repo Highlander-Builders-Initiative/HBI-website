@@ -12,6 +12,7 @@
   --font-mono: var(--font-geist-mono);
   --font-sf: var(--font-sf);
   --font-wdxl: var(--font-wdxl);
+  --font-instrument: var(--font-instrument);
 }
 
 body {

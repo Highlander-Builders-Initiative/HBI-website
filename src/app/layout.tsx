@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, WDXL_Lubrifont_TC } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  WDXL_Lubrifont_TC,
+  Instrument_Sans,
+} from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "@/components/site/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +34,13 @@ const sfFont = localFont({
   display: "swap",
 });
 
+// Instrument Sans from Google Fonts
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Highlander Builders Initiative",
   description:
@@ -42,8 +55,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${wdxlLubrifont.variable} ${sfFont.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${wdxlLubrifont.variable} ${sfFont.variable} ${instrumentSans.variable} antialiased`}
       >
+        <Header />
         {children}
       </body>
     </html>
