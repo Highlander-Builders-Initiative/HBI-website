@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -22,7 +24,14 @@ export default function Home() {
             className="mx-auto h-auto w-[40vw]"
           />
         </div>
-        <p className="font-wdxl pt-2 sm:pt-0 text-md sm:text-2xl">COMING WINTER 2025</p>
+        <p className="font-wdxl text-md pt-2 sm:pt-0 sm:text-2xl">
+          LAUNCHING WINTER 2025
+        </p>
+        <Link href="/apply">
+          <Button variant="fancy-outline" className="mt-2 px-4 py-1.5">
+            Start your application
+          </Button>
+        </Link>
       </div>
     </main>
   );
