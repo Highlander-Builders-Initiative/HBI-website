@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center p-6">
+    <main className="flex min-h-[95vh] items-center justify-center px-6">
       <div className="text-center">
         <h1 className="font-sf text-5xl font-semibold md:text-6xl">
           HIGHLANDER BUILDERS INITIATIVE
