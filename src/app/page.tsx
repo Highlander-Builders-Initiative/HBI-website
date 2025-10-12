@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Tooltip } from "@/components/ui/tooltip";
 
 export default function Home() {
   return (
@@ -35,6 +36,33 @@ export default function Home() {
             Start your application
           </Button>
         </Link>
+      </div>
+
+      {/* Bottom-right socials row */}
+      <div className="absolute right-4 bottom-2 flex items-center gap-2">
+        <Link
+          href="https://www.instagram.com/hbi.ucr"
+          target="_blank"
+          className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
+        >
+          insta
+        </Link>
+        <span className="text-neutral-300">/</span>
+        <Link
+          href="mailto:contact@highlander.builders"
+          className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
+        >
+          email
+        </Link>
+        <span className="text-neutral-300">/</span>
+        <Tooltip content="Coming soon" className="w-24">
+          <Link
+            href="#"
+            className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
+          >
+            highlanderlink
+          </Link>
+        </Tooltip>
       </div>
     </main>
   );
