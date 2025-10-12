@@ -6,25 +6,17 @@ import { Button } from "@/components/ui/button";
 import { LuMenu, LuX } from "react-icons/lu";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
+import NavLink from "@/components/site/nav-link";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const headerRef = useRef<HTMLDivElement>(null);
-  const [headerH, setHeaderH] = useState(0);
 
   // Close menu on route change
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
-
-  // Measure header height so the overlay panel starts below it
-  useEffect(() => {
-    const update = () => setHeaderH(headerRef.current?.offsetHeight ?? 0);
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
 
   return (
     <header className="w-full">
@@ -33,39 +25,16 @@ export default function Header() {
         className="mx-auto flex max-w-screen-xl items-center justify-between p-4"
       >
         {/* Brand */}
-        <Link
-          href="/"
-          className="font-instrument text-md font-medium tracking-tight"
-        >
+        <Link href="/" className="font-instrument text-md tracking-tight">
           Highlander Builders Initiative
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-5 text-sm sm:flex">
-          <Link
-            href="/about"
-            className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
-          >
-            About
-          </Link>
-          <Link
-            href="/campus"
-            className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
-          >
-            Campus
-          </Link>
-          <Link
-            href="/portfolio"
-            className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
-          >
-            Portfolio
-          </Link>
-          <Link
-            href="/team"
-            className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
-          >
-            Team
-          </Link>
+        <nav className="hidden translate-y-0.5 items-center gap-5 text-sm sm:flex">
+          <NavLink href="#">About</NavLink>
+          <NavLink href="#">Blog</NavLink>
+          <NavLink href="#">Portfolio</NavLink>
+          <NavLink href="#">Team</NavLink>
           <Link href="/apply">
             <Button
               variant="fancy-outline"
@@ -104,36 +73,36 @@ export default function Header() {
             <div className="mx-auto border-y border-dashed border-neutral-200 px-4 pt-3 pb-6">
               <ul className="space-y-6">
                 <li>
-                  <Link
+                  <NavLink
                     href="/about"
-                    className="font-instrument block text-lg text-neutral-900"
+                    className="block text-lg text-neutral-900"
                   >
                     About
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link
+                  <NavLink
                     href="/campus"
-                    className="font-instrument block text-lg text-neutral-900"
+                    className="block text-lg text-neutral-900"
                   >
                     Campus
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link
+                  <NavLink
                     href="/portfolio"
-                    className="font-instrument block text-lg text-neutral-900"
+                    className="block text-lg text-neutral-900"
                   >
                     Portfolio
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link
+                  <NavLink
                     href="/team"
-                    className="font-instrument block text-lg text-neutral-900"
+                    className="block text-lg text-neutral-900"
                   >
                     Team
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
 

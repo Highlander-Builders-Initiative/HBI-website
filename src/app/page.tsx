@@ -28,7 +28,10 @@ export default function Home() {
           LAUNCHING WINTER 2025
         </p>
         <Link href="/apply">
-          <Button variant="fancy-outline" className="mt-2 px-4 py-1.5">
+          <Button
+            variant="fancy-outline"
+            className="mt-2 rounded-full px-4 py-1.5"
+          >
             Start your application
           </Button>
         </Link>
