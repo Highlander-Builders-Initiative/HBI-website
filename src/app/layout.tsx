@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, WDXL_Lubrifont_TC } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +11,21 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const wdxlLubrifont = WDXL_Lubrifont_TC({
+  variable: "--font-wdxl",
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const sfFont = localFont({
+  src: "../fonts/sfpro/SF.ttf",
+  variable: "--font-sf",
+  weight: "100 900",
+  style: "normal",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -26,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${wdxlLubrifont.variable} ${sfFont.variable} antialiased`}
       >
         {children}
       </body>
