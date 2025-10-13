@@ -35,7 +35,7 @@ export default function Header() {
           <NavLink href="#">Blog</NavLink>
           <NavLink href="#">Portfolio</NavLink>
           <NavLink href="#">Team</NavLink>
-          <Link href="/apply">
+          <Link href="/apply" target="_blank">
             <Button
               variant="fancy-outline"
               className="font-instrument text-md h-8 rounded-full px-4"
@@ -73,41 +73,29 @@ export default function Header() {
             <div className="mx-auto border-y border-dashed border-neutral-200 px-4 pt-3 pb-6">
               <ul className="space-y-6">
                 <li>
-                  <NavLink
-                    href="/about"
-                    className="block text-lg text-neutral-900"
-                  >
-                    About
-                  </NavLink>
+                  <Link href="#" className="block text-lg text-neutral-900">
+                    About (soon)
+                  </Link>
                 </li>
                 <li>
-                  <NavLink
-                    href="/campus"
-                    className="block text-lg text-neutral-900"
-                  >
-                    Campus
-                  </NavLink>
+                  <Link href="#" className="block text-lg text-neutral-900">
+                    Blog (soon)
+                  </Link>
                 </li>
                 <li>
-                  <NavLink
-                    href="/portfolio"
-                    className="block text-lg text-neutral-900"
-                  >
-                    Portfolio
-                  </NavLink>
+                  <Link href="#" className="block text-lg text-neutral-900">
+                    Portfolio (soon)
+                  </Link>
                 </li>
                 <li>
-                  <NavLink
-                    href="/team"
-                    className="block text-lg text-neutral-900"
-                  >
-                    Team
-                  </NavLink>
+                  <Link href="#" className="block text-lg text-neutral-900">
+                    Team (soon)
+                  </Link>
                 </li>
               </ul>
 
               <div className="mt-6">
-                <Link href="/apply">
+                <Link href="/apply" target="_blank">
                   <Button
                     variant="fancy-outline"
                     className="font-instrument h-9 rounded-full px-4"

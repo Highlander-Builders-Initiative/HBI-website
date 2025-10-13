@@ -28,7 +28,7 @@ export default function Home() {
         <p className="font-wdxl pt-2 text-xl sm:pt-0 sm:text-2xl">
           LAUNCHING WINTER 2025
         </p>
-        <Link href="/apply">
+        <Link href="/apply" target="_blank">
           <Button
             variant="fancy-outline"
             className="mt-2 rounded-full px-4 py-1.5"
