@@ -68,7 +68,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="fixed inset-x-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 sm:hidden"
+            className="fixed inset-x-0 z-50 bg-white sm:hidden"
           >
             <div className="mx-auto border-y border-dashed border-neutral-200 px-4 pt-3 pb-6">
               <ul className="space-y-6">

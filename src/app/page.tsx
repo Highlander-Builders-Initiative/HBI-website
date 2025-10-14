@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       {/* Background */}
-      <div className="absolute inset-x-3 top-16 bottom-10 -z-10 overflow-hidden rounded-xl">
+      <div className="absolute inset-x-3 top-14 bottom-10 -z-10 overflow-hidden rounded-xl sm:top-16">
         <Image
           src="/landscape.webp"
           alt="UCR landscape"
