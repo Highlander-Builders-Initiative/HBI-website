@@ -69,14 +69,13 @@ export default function Home() {
             email
           </Link>
           <span className="text-neutral-300">/</span>
-          <Tooltip content="Coming soon" className="w-24">
-            <Link
-              href="#"
-              className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
-            >
-              highlanderlink
-            </Link>
-          </Tooltip>
+          <Link
+            href="https://highlanderlink.ucr.edu/organization/hbi"
+            target="_blank"
+            className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
+          >
+            highlanderlink
+          </Link>
         </div>
       </main>
     </>
