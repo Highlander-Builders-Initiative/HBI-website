@@ -17,6 +17,7 @@ export default function Home() {
         />
         {/* Neutral overlay */}
         <div className="absolute inset-0 bg-neutral-50 opacity-85" />
+        <div className="absolute inset-0 rounded-xl inset-shadow-sm/6" />
       </div>
 
       <main className="flex min-h-[85vh] items-center justify-center p-3">
