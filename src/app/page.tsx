@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Tooltip } from "@/components/ui/tooltip";
 
 export default function Home() {
   return (
@@ -16,14 +15,14 @@ export default function Home() {
           unoptimized
         />
         {/* Neutral overlay */}
-        <div className="absolute inset-0 rounded-xl bg-neutral-50 opacity-85 inset-shadow-sm/6" />
+        <div className="absolute inset-0 rounded-xl bg-neutral-700 opacity-85 inset-shadow-sm/6 sm:bg-neutral-50" />
       </div>
 
       <main className="flex min-h-[85vh] items-center justify-center p-3">
         <div className="text-center">
           {/* Show text at sm and above */}
           <div className="hidden sm:block">
-            <h1 className="font-sf text-5xl font-semibold md:text-6xl">
+            <h1 className="font-sf text-5xl font-semibold text-neutral-100 sm:text-black md:text-6xl">
               HIGHLANDER BUILDERS INITIATIVE
             </h1>
           </div>
@@ -39,7 +38,7 @@ export default function Home() {
               className="mx-auto h-auto w-[40vw]"
             />
           </div>
-          <p className="font-wdxl pt-2 text-xl sm:pt-0 sm:text-2xl">
+          <p className="font-wdxl pt-2 text-xl text-neutral-50 sm:pt-0 sm:text-2xl sm:text-black">
             LAUNCHING WINTER 2025
           </p>
           <Link href="/apply" target="_blank">
