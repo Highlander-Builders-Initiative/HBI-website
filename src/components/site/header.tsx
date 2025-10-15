@@ -33,7 +33,7 @@ export default function Header() {
         <nav className="hidden translate-y-0.5 items-center gap-5 text-sm sm:flex">
           <NavLink href="#">About</NavLink>
           <NavLink href="#">Blog</NavLink>
-          <NavLink href="#">Portfolio</NavLink>
+          <NavLink href="#">Projects</NavLink>
           <NavLink href="#">Team</NavLink>
           <Link href="/apply" target="_blank">
             <Button
@@ -84,7 +84,7 @@ export default function Header() {
                 </li>
                 <li>
                   <Link href="#" className="block text-lg text-neutral-900">
-                    Portfolio (soon)
+                    Projects (soon)
                   </Link>
                 </li>
                 <li>
