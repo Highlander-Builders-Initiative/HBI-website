@@ -1,0 +1,381 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="gameCanvas"></canvas>
+
+    <script>
+      // Game configuration
+      const GRID_WIDTH = 40;
+      const GRID_HEIGHT = 20;
+      const CELL_SIZE = 15;
+      const CANVAS_WIDTH = GRID_WIDTH * CELL_SIZE;
+      const CANVAS_HEIGHT = GRID_HEIGHT * CELL_SIZE;
+      const GAME_SPEED = 100;
+
+      // Direction constants
+      const DIR = {
+        UP: { x: 0, y: -1 },
+        DOWN: { x: 0, y: 1 },
+        LEFT: { x: -1, y: 0 },
+        RIGHT: { x: 1, y: 0 },
+      };
+
+      // Game state
+      let canvas, ctx;
+      let snake, direction, nextDirection;
+      let foodArray;
+      let totalFood;
+      let score;
+      let gameRunning;
+      let gameWon;
+      let gameInterval;
+
+      // Initialize canvas
+      canvas = document.getElementById("gameCanvas");
+      canvas.width = CANVAS_WIDTH;
+      canvas.height = CANVAS_HEIGHT;
+      ctx = canvas.getContext("2d");
+
+      // Initialize game
+      function initGame() {
+        // Start snake below the HBI letters (HBI ends at y=11, so start at y=14)
+        const startY = 14;
+        const startX = Math.floor(GRID_WIDTH / 2);
+        snake = [
+          { x: startX, y: startY },
+          { x: startX - 1, y: startY },
+          { x: startX - 2, y: startY },
+        ];
+        direction = DIR.RIGHT;
+        nextDirection = DIR.RIGHT;
+        score = 0;
+        gameRunning = true;
+        gameWon = false;
+        spawnHBIFood();
+      }
+
+      // Letter patterns for HBI (5x5 grid for each letter)
+      const letterPatterns = {
+        H: [
+          [1, 0, 0, 0, 1],
+          [1, 0, 0, 0, 1],
+          [1, 1, 1, 1, 1],
+          [1, 0, 0, 0, 1],
+          [1, 0, 0, 0, 1],
+        ],
+        B: [
+          [1, 1, 1, 1, 0],
+          [1, 0, 0, 0, 1],
+          [1, 1, 1, 1, 0],
+          [1, 0, 0, 0, 1],
+          [1, 1, 1, 1, 0],
+        ],
+        I: [
+          [1, 1, 1, 1, 1],
+          [0, 0, 1, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 1, 0, 0],
+          [1, 1, 1, 1, 1],
+        ],
+      };
+
+      // Spawn food in HBI pattern
+      function spawnHBIFood() {
+        foodArray = [];
+        const letters = ["H", "B", "I"];
+        const letterSpacing = 7; // Space between letters
+        const startX = 8; // Starting X position
+        const startY = 7; // Starting Y position (centered vertically)
+
+        letters.forEach((letter, letterIndex) => {
+          const pattern = letterPatterns[letter];
+          const offsetX = startX + letterIndex * letterSpacing;
+
+          pattern.forEach((row, rowIndex) => {
+            row.forEach((cell, colIndex) => {
+              if (cell === 1) {
+                const foodPos = {
+                  x: offsetX + colIndex,
+                  y: startY + rowIndex,
+                };
+                // Check if position is valid (not on snake)
+                if (
+                  !snake.some((segment) => positionEquals(segment, foodPos))
+                ) {
+                  foodArray.push(foodPos);
+                }
+              }
+            });
+          });
+        });
+
+        totalFood = foodArray.length;
+      }
+
+      // Check if two positions are equal
+      function positionEquals(pos1, pos2) {
+        return pos1.x === pos2.x && pos1.y === pos2.y;
+      }
+
+      // Check if direction change is valid (no 180-degree turns)
+      function isValidDirectionChange(current, next) {
+        return !(current.x === -next.x && current.y === -next.y);
+      }
+
+      // Handle keyboard input
+      document.addEventListener("keydown", (e) => {
+        if (!gameRunning && e.code === "Space") {
+          initGame();
+          return;
+        }
+
+        if (!gameRunning) return;
+
+        let newDirection;
+        switch (e.key) {
+          case "ArrowUp":
+          case "w":
+          case "W":
+            newDirection = DIR.UP;
+            break;
+          case "ArrowDown":
+          case "s":
+          case "S":
+            newDirection = DIR.DOWN;
+            break;
+          case "ArrowLeft":
+          case "a":
+          case "A":
+            newDirection = DIR.LEFT;
+            break;
+          case "ArrowRight":
+          case "d":
+          case "D":
+            newDirection = DIR.RIGHT;
+            break;
+          default:
+            return;
+        }
+
+        // Prevent 180-degree turns
+        if (newDirection && isValidDirectionChange(direction, newDirection)) {
+          nextDirection = newDirection;
+        }
+
+        e.preventDefault();
+      });
+
+      // Game loop
+      function gameLoop() {
+        if (!gameRunning) return;
+
+        // Update direction
+        direction = nextDirection;
+
+        // Calculate new head position
+        const head = snake[0];
+        const newHead = {
+          x: head.x + direction.x,
+          y: head.y + direction.y,
+        };
+
+        // Check wall collision
+        if (
+          newHead.x < 0 ||
+          newHead.x >= GRID_WIDTH ||
+          newHead.y < 0 ||
+          newHead.y >= GRID_HEIGHT
+        ) {
+          gameOver();
+          return;
+        }
+
+        // Check self collision
+        if (snake.some((segment) => positionEquals(segment, newHead))) {
+          gameOver();
+          return;
+        }
+
+        // Add new head
+        snake.unshift(newHead);
+
+        // Check if food is eaten
+        const foodIndex = foodArray.findIndex((f) =>
+          positionEquals(newHead, f),
+        );
+        if (foodIndex !== -1) {
+          score++;
+          foodArray.splice(foodIndex, 1); // Remove eaten food
+
+          // Check if all food is eaten (win condition)
+          if (foodArray.length === 0) {
+            gameWin();
+            return;
+          }
+        } else {
+          // Remove tail if no food eaten
+          snake.pop();
+        }
+
+        // Render
+        render();
+      }
+
+      // Render game
+      function render() {
+        // Clear canvas
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+        // Draw snake
+        snake.forEach((segment, index) => {
+          ctx.fillStyle = index === 0 ? "#4ade80" : "#22c55e";
+          ctx.fillRect(
+            segment.x * CELL_SIZE + 1,
+            segment.y * CELL_SIZE + 1,
+            CELL_SIZE - 2,
+            CELL_SIZE - 2,
+          );
+        });
+
+        // Draw all food
+        ctx.fillStyle = "#ef4444";
+        foodArray.forEach((food) => {
+          ctx.fillRect(
+            food.x * CELL_SIZE + 1,
+            food.y * CELL_SIZE + 1,
+            CELL_SIZE - 2,
+            CELL_SIZE - 2,
+          );
+        });
+
+        // Draw game over or win screen
+        if (!gameRunning) {
+          // Semi-transparent overlay
+          ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+          ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+          // Title text (pixelated style)
+          if (gameWon) {
+            ctx.fillStyle = "#4ade80";
+            ctx.font = "bold 40px monospace";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("YOU WIN!", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 40);
+          } else {
+            ctx.fillStyle = "#ef4444";
+            ctx.font = "bold 40px monospace";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("GAME OVER", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 40);
+          }
+
+          // Score text
+          ctx.fillStyle = "#fff";
+          ctx.font = "bold 20px monospace";
+          ctx.fillText(
+            "Score: " + score + "/" + totalFood,
+            CANVAS_WIDTH / 2,
+            CANVAS_HEIGHT / 2,
+          );
+
+          // Restart/Discord button
+          const buttonWidth = gameWon ? 240 : 160;
+          const buttonHeight = 40;
+          const buttonX = CANVAS_WIDTH / 2 - buttonWidth / 2;
+          const buttonY = CANVAS_HEIGHT / 2 + 30;
+
+          // Button background
+          ctx.fillStyle = "#4ade80";
+          ctx.fillRect(buttonX, buttonY, buttonWidth, buttonHeight);
+
+          // Button border (pixelated effect)
+          ctx.strokeStyle = "#22c55e";
+          ctx.lineWidth = 3;
+          ctx.strokeRect(buttonX, buttonY, buttonWidth, buttonHeight);
+
+          // Button text
+          ctx.fillStyle = "#000";
+          ctx.font = "bold 18px monospace";
+          if (gameWon) {
+            ctx.fillText(
+              "JOIN OUR DISCORD",
+              CANVAS_WIDTH / 2,
+              buttonY + buttonHeight / 2,
+            );
+          } else {
+            ctx.fillText(
+              "RESTART",
+              CANVAS_WIDTH / 2,
+              buttonY + buttonHeight / 2,
+            );
+          }
+        }
+      }
+
+      // Game over
+      function gameOver() {
+        gameRunning = false;
+        gameWon = false;
+        clearInterval(gameInterval);
+        render(); // Render the game over screen
+      }
+
+      // Game win
+      function gameWin() {
+        gameRunning = false;
+        gameWon = true;
+        clearInterval(gameInterval);
+        render(); // Render the win screen
+      }
+
+      // Handle canvas clicks for restart/discord button
+      canvas.addEventListener("click", (e) => {
+        if (!gameRunning) {
+          const rect = canvas.getBoundingClientRect();
+          const clickX = e.clientX - rect.left;
+          const clickY = e.clientY - rect.top;
+
+          // Check if click is within button
+          const buttonWidth = gameWon ? 240 : 160;
+          const buttonHeight = 40;
+          const buttonX = CANVAS_WIDTH / 2 - buttonWidth / 2;
+          const buttonY = CANVAS_HEIGHT / 2 + 30;
+
+          if (
+            clickX >= buttonX &&
+            clickX <= buttonX + buttonWidth &&
+            clickY >= buttonY &&
+            clickY <= buttonY + buttonHeight
+          ) {
+            if (gameWon) {
+              // Open Discord link in new tab
+              window.open("https://discord.gg/QYCQwTTvfS", "_blank");
+            } else {
+              // Restart game
+              initGame();
+              gameInterval = setInterval(gameLoop, GAME_SPEED);
+            }
+          }
+        }
+      });
+
+      // Start game
+      initGame();
+      render();
+      gameInterval = setInterval(gameLoop, GAME_SPEED);
+    </script>
+  </body>
+</html>
