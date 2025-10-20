@@ -62,6 +62,14 @@ export default function Home() {
           </Link>
           <span className="text-neutral-300">/</span>
           <Link
+            href="https://discord.gg/QYCQwTTvfS"
+            target="_blank"
+            className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
+          >
+            discord
+          </Link>
+          <span className="text-neutral-300">/</span>
+          <Link
             href="mailto:contact@highlander.builders"
             className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
           >
