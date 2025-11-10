@@ -151,7 +151,7 @@ export default function Polaroid({
         className="inline-block"
       >
         <div
-          className="relative inline-block bg-[#e8e8e8] p-5 pb-4 shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
+          className="relative inline-block bg-[#eeeeee] p-5 pb-4 shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
           style={{ maxWidth: `${width}px` }}
         >
           <div ref={targetRef} className="relative">
