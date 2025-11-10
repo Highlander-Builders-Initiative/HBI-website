@@ -108,7 +108,7 @@ export default function Polaroid({
         }}
         onPositionChange={handlePositionChange}
       >
-        <motion.div className="flex items-center justify-center rounded-full border border-neutral-500 bg-neutral-700/50 p-1 backdrop-blur-xs">
+        <motion.div className="flex items-center justify-center rounded-full border border-neutral-500 bg-neutral-700/50 py-0.5 px-1.5 backdrop-blur-xs">
           <AnimatePresence>
             {isHovering ? (
               <motion.div
