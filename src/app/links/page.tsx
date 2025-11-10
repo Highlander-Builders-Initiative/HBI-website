@@ -72,10 +72,14 @@ export default function Links() {
               </Button>
             </Link>
           </div>
+          <p className="font-sf text-md mt-4 leading-[1.2] text-neutral-50 sm:pt-0 sm:text-lg sm:text-black">
+            To get involved, follow our socials <br /> or start your application
+            below!
+          </p>
           <Link href="/apply" target="_blank">
             <Button
               variant="fancy-outline"
-              className="mt-2 rounded-full px-4 py-1.5 sm:text-lg"
+              className="mt-4 rounded-full px-4 py-1.5 sm:text-lg"
             >
               Start your application
             </Button>
