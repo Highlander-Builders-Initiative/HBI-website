@@ -23,6 +23,22 @@ interface PolaroidProps {
   text?: string;
 }
 
+interface Region {
+  x: number; // percentage from left
+  y: number; // percentage from top
+  radius: number; // percentage
+  name: string;
+  role: string;
+}
+
+const regions: Region[] = [
+  { x: 18, y: 45, radius: 10, name: "Vinay", role: "Growth & Strategy" },
+  { x: 34, y: 45, radius: 10, name: "Noah", role: "Treasurer" },
+  { x: 44, y: 38, radius: 10, name: "Kobe", role: "Growth & Strategy" },
+  { x: 58, y: 43, radius: 10, name: "Henry", role: "President" },
+  { x: 80, y: 42, radius: 10, name: "Ivan", role: "Vice President" },
+];
+
 export default function Polaroid({
   src,
   alt,
@@ -31,6 +47,7 @@ export default function Polaroid({
   text,
 }: PolaroidProps) {
   const [isHovering, setIsHovering] = useState(false);
+  const [currentLabel, setCurrentLabel] = useState("The Board");
   const targetRef = useRef<HTMLDivElement>(null);
 
   const handlePositionChange = (x: number, y: number) => {
@@ -39,6 +56,36 @@ export default function Polaroid({
       const isInside =
         x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
       setIsHovering(isInside);
+
+      if (isInside) {
+        // Calculate relative position within image (as percentage)
+        const relativeX = ((x - rect.left) / rect.width) * 100;
+        const relativeY = ((y - rect.top) / rect.height) * 100;
+
+        // If in bottom 20%, show "The Board"
+        if (relativeY > 80) {
+          setCurrentLabel("The Board");
+        } else {
+          // Find closest region overall
+          let closestRegion: Region | null = null;
+          let minDistance = Infinity;
+
+          regions.forEach((region) => {
+            const dx = relativeX - region.x;
+            const dy = relativeY - region.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < minDistance) {
+              minDistance = distance;
+              closestRegion = region;
+            }
+          });
+
+          if (closestRegion) {
+            setCurrentLabel(`${closestRegion.name} (${closestRegion.role})`);
+          }
+        }
+      }
     }
   };
 
@@ -60,13 +107,7 @@ export default function Polaroid({
         }}
         onPositionChange={handlePositionChange}
       >
-        <motion.div
-          animate={{
-            width: isHovering ? 80 : 16,
-            height: isHovering ? 30 : 16,
-          }}
-          className="flex items-center justify-center rounded-full border border-neutral-500 bg-neutral-700/50 backdrop-blur-xs"
-        >
+        <motion.div className="flex items-center justify-center rounded-full border border-neutral-500 bg-neutral-700/50 p-1 backdrop-blur-xs">
           <AnimatePresence>
             {isHovering ? (
               <motion.div
@@ -78,7 +119,7 @@ export default function Polaroid({
                 <div
                   className={`inline-flex items-center text-xs text-white ${sfFont.className}`}
                 >
-                  The Board
+                  {currentLabel}
                 </div>
               </motion.div>
             ) : null}
