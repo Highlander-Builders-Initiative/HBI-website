@@ -90,7 +90,10 @@ export default function Polaroid({
   };
 
   return (
-    <div className="inline-block bg-[#e8e8e8] p-5 pb-4 shadow-[0_2px_2px_rgba(0,0,0,0.5)]">
+    <div
+      className="inline-block bg-[#e8e8e8] p-5 pb-4 shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
+      style={{ maxWidth: `${width}px` }}
+    >
       <Cursor
         attachToParent
         variants={{
@@ -133,6 +136,7 @@ export default function Polaroid({
           width={width}
           height={height}
           className="block h-auto w-full"
+          style={{ maxWidth: `${width}px`, maxHeight: `${height}px` }}
         />
         <div className="pointer-events-none absolute inset-0 shadow-[inset_0_1px_2px_1px_rgba(0,0,0,0.12)]"></div>
       </div>
