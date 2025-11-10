@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { FaInstagram, FaDiscord } from "react-icons/fa";
+import { FaInstagram, FaDiscord, FaLinkedin } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 
 export default function Links() {
@@ -38,6 +38,13 @@ export default function Links() {
             <Link href="https://discord.gg/QYCQwTTvfS" target="_blank">
               <Button variant="fancy-outline" className="rounded-full p-1">
                 <FaDiscord className="size-4 sm:size-5" />
+              </Button>
+            </Link>
+
+            {/* LinkedIn icon is extra big by default, so I made it smaller */}
+            <Link href="https://www.linkedin.com/company/hbi" target="_blank">
+              <Button variant="fancy-outline" className="rounded-full p-1.5">
+                <FaLinkedin className="size-3 sm:size-4" />
               </Button>
             </Link>
 
