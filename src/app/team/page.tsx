@@ -11,7 +11,7 @@ export default function Team() {
         text="THE BOARD"
       />
 
-      <div className="hidden sm:block">
+      <div className="hidden text-center sm:block">
         <p className="font-sf mt-6 text-lg">
           Our founding team is what made this organization possible.
         </p>
@@ -20,10 +20,8 @@ export default function Team() {
         </p>
       </div>
 
-      <div className="block sm:hidden">
-        <p className="font-sf mt-6 text-center text-lg">
-          This is our founding team.
-        </p>
+      <div className="block text-center sm:hidden">
+        <p className="font-sf mt-6 text-lg">This is our founding team.</p>
         <p className="font-sf -mt-0.5 text-lg">
           We&apos;re here to support your journey.
         </p>
