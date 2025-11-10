@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import localFont from "next/font/local";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Cursor } from "@/components/ui/cursor";
 import { AnimatePresence, motion } from "motion/react";
 import { Tilt } from "@/components/ui/tilt";
@@ -49,7 +49,14 @@ export default function Polaroid({
 }: PolaroidProps) {
   const [isHovering, setIsHovering] = useState(false);
   const [currentLabel, setCurrentLabel] = useState("The Board");
+  const [hasContent, setHasContent] = useState(false);
   const targetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isHovering) {
+      setHasContent(true);
+    }
+  }, [isHovering]);
 
   const handlePositionChange = (x: number, y: number) => {
     if (targetRef.current) {
@@ -108,13 +115,16 @@ export default function Polaroid({
         }}
         onPositionChange={handlePositionChange}
       >
-        <motion.div className="flex items-center justify-center rounded-full border border-neutral-500 bg-neutral-700/50 px-1.5 py-0.5 backdrop-blur-xs">
-          <AnimatePresence>
+        <motion.div
+          className={`flex items-center justify-center rounded-full border border-neutral-500 bg-neutral-700/50 backdrop-blur-xs ${hasContent ? "px-1.5 py-0.5" : "p-1.5"}`}
+        >
+          <AnimatePresence onExitComplete={() => setHasContent(false)}>
             {isHovering ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.6 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.6 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.15 }}
                 className="inline-flex w-full items-center justify-center"
               >
                 <div
