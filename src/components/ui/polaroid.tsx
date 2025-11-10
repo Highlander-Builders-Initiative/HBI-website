@@ -167,7 +167,7 @@ export default function Polaroid({
           </div>
           {text && (
             <div
-              className={`mt-6 text-center text-4xl text-gray-800 ${sharpieFont.className}`}
+              className={`mt-6 text-center text-4xl text-neutral-800 ${sharpieFont.className}`}
             >
               {text}
             </div>
