@@ -22,7 +22,7 @@ export default function Home() {
         <div className="text-center">
           {/* Show text at sm and above */}
           <div className="hidden sm:block">
-            <h1 className="font-sf text-5xl font-semibold text-neutral-100 sm:text-black md:text-6xl">
+            <h1 className="font-sf text-5xl font-semibold text-black md:text-6xl">
               HIGHLANDER BUILDERS INITIATIVE
             </h1>
           </div>
