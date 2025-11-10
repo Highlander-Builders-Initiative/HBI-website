@@ -5,6 +5,8 @@ import localFont from "next/font/local";
 import { useRef, useState } from "react";
 import { Cursor } from "@/components/ui/cursor";
 import { AnimatePresence, motion } from "motion/react";
+import { Spotlight } from "@/components/ui/spotlight";
+import { Tilt } from "@/components/ui/tilt";
 
 const sharpieFont = localFont({
   src: "../../fonts/sharpie/Sharpie.ttf",
@@ -90,10 +92,7 @@ export default function Polaroid({
   };
 
   return (
-    <div
-      className="inline-block bg-[#e8e8e8] p-5 pb-4 shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
-      style={{ maxWidth: `${width}px` }}
-    >
+    <div className="inline-block">
       <Cursor
         attachToParent
         variants={{
@@ -129,24 +128,52 @@ export default function Polaroid({
           </AnimatePresence>
         </motion.div>
       </Cursor>
-      <div ref={targetRef} className="relative">
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className="block h-auto w-full"
-          style={{ maxWidth: `${width}px`, maxHeight: `${height}px` }}
-        />
-        <div className="pointer-events-none absolute inset-0 shadow-[inset_0_1px_2px_1px_rgba(0,0,0,0.12)]"></div>
-      </div>
-      {text && (
+      <Tilt
+        rotationFactor={6}
+        isRevese
+        style={{
+          transformOrigin: "center center",
+        }}
+        springOptions={{
+          stiffness: 26.7,
+          damping: 4.1,
+          mass: 0.2,
+        }}
+        className="inline-block"
+      >
         <div
-          className={`mt-6 text-center text-4xl text-gray-800 ${sharpieFont.className}`}
+          className="group relative inline-block bg-[#e8e8e8] p-5 pb-4 shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
+          style={{ maxWidth: `${width}px` }}
         >
-          {text}
+          <Spotlight
+            className="z-10 from-white/50 via-white/20 to-white/10 blur-2xl"
+            size={248}
+            springOptions={{
+              stiffness: 26.7,
+              damping: 4.1,
+              mass: 0.2,
+            }}
+          />
+          <div ref={targetRef} className="relative">
+            <Image
+              src={src}
+              alt={alt}
+              width={width}
+              height={height}
+              className="block h-auto w-full"
+              style={{ maxWidth: `${width}px`, maxHeight: `${height}px` }}
+            />
+            <div className="pointer-events-none absolute inset-0 shadow-[inset_0_1px_2px_1px_rgba(0,0,0,0.12)]"></div>
+          </div>
+          {text && (
+            <div
+              className={`mt-6 text-center text-4xl text-gray-800 ${sharpieFont.className}`}
+            >
+              {text}
+            </div>
+          )}
         </div>
-      )}
+      </Tilt>
     </div>
   );
 }
