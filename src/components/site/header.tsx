@@ -34,7 +34,12 @@ export default function Header() {
           <NavLink href="#">About</NavLink>
           <NavLink href="#">Blog</NavLink>
           <NavLink href="#">Projects</NavLink>
-          <NavLink href="#">Team</NavLink>
+          <Link
+            href="/team"
+            className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
+          >
+            Team
+          </Link>
           <Link href="/apply" target="_blank">
             <Button
               variant="fancy-outline"
@@ -88,8 +93,8 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="block text-lg text-neutral-900">
-                    Team (soon)
+                  <Link href="/team" className="block text-lg text-neutral-900">
+                    Team
                   </Link>
                 </li>
               </ul>
