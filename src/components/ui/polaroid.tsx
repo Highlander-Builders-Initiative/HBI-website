@@ -67,10 +67,10 @@ export default function Polaroid({
           setCurrentLabel("The Board");
         } else {
           // Find closest region overall
-          let closestRegion: Region | null = null;
+          let closestRegion: Region | undefined = undefined;
           let minDistance = Infinity;
 
-          regions.forEach((region) => {
+          for (const region of regions) {
             const dx = relativeX - region.x;
             const dy = relativeY - region.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
@@ -79,7 +79,7 @@ export default function Polaroid({
               minDistance = distance;
               closestRegion = region;
             }
-          });
+          }
 
           if (closestRegion) {
             setCurrentLabel(`${closestRegion.name} (${closestRegion.role})`);

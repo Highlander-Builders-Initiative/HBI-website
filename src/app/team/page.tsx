@@ -2,7 +2,7 @@ import Polaroid from "@/components/ui/polaroid";
 
 export default function Team() {
   return (
-    <div className="flex min-h-[90vh] items-center justify-center p-3">
+    <div className="flex min-h-[90vh] items-center justify-center p-8">
       <Polaroid
         src="/team.webp"
         alt="Team member"
