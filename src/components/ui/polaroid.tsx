@@ -5,7 +5,6 @@ import localFont from "next/font/local";
 import { useRef, useState } from "react";
 import { Cursor } from "@/components/ui/cursor";
 import { AnimatePresence, motion } from "motion/react";
-import { Spotlight } from "@/components/ui/spotlight";
 import { Tilt } from "@/components/ui/tilt";
 
 const sharpieFont = localFont({
@@ -142,18 +141,9 @@ export default function Polaroid({
         className="inline-block"
       >
         <div
-          className="group relative inline-block bg-[#e8e8e8] p-5 pb-4 shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
+          className="relative inline-block bg-[#e8e8e8] p-5 pb-4 shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
           style={{ maxWidth: `${width}px` }}
         >
-          <Spotlight
-            className="z-10 from-white/50 via-white/20 to-white/10 blur-2xl"
-            size={248}
-            springOptions={{
-              stiffness: 26.7,
-              damping: 4.1,
-              mass: 0.2,
-            }}
-          />
           <div ref={targetRef} className="relative">
             <Image
               src={src}
