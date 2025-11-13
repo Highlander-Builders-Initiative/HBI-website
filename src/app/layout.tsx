@@ -34,6 +34,14 @@ const sfFont = localFont({
   display: "swap",
 });
 
+const instrumentSerif = localFont({
+  src: "../fonts/instrument/InstrumentSerif.ttf",
+  variable: "--font-instrument",
+  weight: "400",
+  style: "normal",
+  display: "swap",
+});
+
 // Instrument Sans from Google Fonts
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument",
@@ -55,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${wdxlLubrifont.variable} ${sfFont.variable} ${instrumentSans.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${wdxlLubrifont.variable} ${sfFont.variable} ${instrumentSerif.variable} ${instrumentSans.variable} antialiased`}
       >
         <Header />
         {children}
