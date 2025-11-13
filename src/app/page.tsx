@@ -87,7 +87,14 @@ export default function Home() {
           <Link
             href="https://highlanderlink.ucr.edu/organization/hbi"
             target="_blank"
-            className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
+            className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline sm:hidden"
+          >
+            hl
+          </Link>
+          <Link
+            href="https://highlanderlink.ucr.edu/organization/hbi"
+            target="_blank"
+            className="font-instrument hidden text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline sm:block"
           >
             highlanderlink
           </Link>
