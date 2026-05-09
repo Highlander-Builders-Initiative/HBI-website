@@ -26,7 +26,7 @@ export default function Links() {
             HIGHLANDER <br /> BUILDERS <br /> INITIATIVE
           </h1>
           <p className="font-wdxl pt-2 text-xl text-neutral-50 sm:pt-0 sm:text-2xl sm:text-black">
-            LAUNCHING WINTER 2025
+            LAUNCHING SPRING 2026
           </p>
           <div className="mt-2 flex justify-center gap-1.5 sm:gap-1">
             <Link href="https://instagram.com/hbi.ucr" target="_blank">
