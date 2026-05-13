@@ -31,7 +31,7 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden translate-y-0.5 items-center gap-5 text-sm sm:flex">
-          <NavLink href="#">About</NavLink>
+          <NavLink href="/about">About</NavLink>
           <NavLink href="#">Blog</NavLink>
           <NavLink href="#">Projects</NavLink>
           <Link
@@ -78,8 +78,8 @@ export default function Header() {
             <div className="mx-auto border-y border-dashed border-neutral-200 px-4 pt-3 pb-6">
               <ul className="space-y-6">
                 <li>
-                  <Link href="#" className="block text-lg text-neutral-900">
-                    About (soon)
+                  <Link href="/about" className="block text-lg text-neutral-900">
+                    About
                   </Link>
                 </li>
                 <li>
