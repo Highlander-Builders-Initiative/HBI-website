@@ -34,12 +34,7 @@ export default function Header() {
           <NavLink href="/about">About</NavLink>
           <NavLink href="#">Blog</NavLink>
           <NavLink href="#">Projects</NavLink>
-          <Link
-            href="/team"
-            className="font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline"
-          >
-            Team
-          </Link>
+          <NavLink href="/team">Team</NavLink>
           <Link href="/apply" target="_blank">
             <Button
               variant="fancy-outline"
