@@ -51,13 +51,13 @@ export default function AboutPage() {
             </h2>
             <ul className="space-y-8">
               <li>
-                <strong className="font-medium text-black">Build:</strong> We're always working on projects, which can span multiple quarters. The projects are technical and well designed, sometimes marketed as products. We have objectives like utility, public notability / recognition, and sometimes profit in mind.
+                <strong className="font-medium text-black">Build:</strong> We&apos;re always working on projects, which can span multiple quarters. The projects are technical and well designed, sometimes marketed as products. We have objectives like utility, public notability / recognition, and sometimes profit in mind.
               </li>
               <li>
                 <strong className="font-medium text-black">Collaborate:</strong> Project teams form organically around what each project needs. We match skills to projects, not people to rigid roles.
               </li>
               <li>
-                <strong className="font-medium text-black">Community:</strong> We hope that peers you work alongside with can become friends that you can continue to work with in the future. Members often participate in hackathons and competitions together, representing UCR’s top technical talent. We also host member exclusive events.
+                <strong className="font-medium text-black">Community:</strong> We hope that peers you work alongside with can become friends that you can continue to work with in the future. Members often participate in hackathons and competitions together, representing UCR&rsquo;s top technical talent. We also host member exclusive events.
               </li>
             </ul>
           </section>
@@ -65,10 +65,10 @@ export default function AboutPage() {
           {/* Who We're Looking For */}
           <section className="space-y-6">
             <h2 className="font-instrument text-2xl font-light italic text-neutral-900 underline decoration-neutral-200 underline-offset-8">
-              Who We’re Looking For
+              Who We&rsquo;re Looking For
             </h2>
             <p>
-              Although we are selective, everyone is encouraged to apply. Whether you're technical, creative, strategic, or otherwise, if your abilities align with what we're building, you belong on the team.
+              Although we are selective, everyone is encouraged to apply. Whether you&apos;re technical, creative, strategic, or otherwise, if your abilities align with what we&apos;re building, you belong on the team.
             </p>
             <div className="grid grid-cols-1 gap-4 rounded-xl border border-neutral-100 bg-neutral-50/50 p-6 sm:grid-cols-2">
               <div className="space-y-1">
@@ -89,10 +89,10 @@ export default function AboutPage() {
               </div>
             </div>
             <p className="text-neutral-600 italic">
-              If you want to help build cool things, HBI is for you. Even if you don't fit any of our existing boxes, if you have a strong case to make for a spot on the team, apply!
+              If you want to help build cool things, HBI is for you. Even if you don&apos;t fit any of our existing boxes, if you have a strong case to make for a spot on the team, apply!
             </p>
             <p className="text-sm text-neutral-500">
-              We're also open to beginners if we see that you have a strong will to learn / we see potential! (likely demonstrated in some obvious way, not based on vibes)
+              We&apos;re also open to beginners if we see that you have a strong will to learn / we see potential! (likely demonstrated in some obvious way, not based on vibes)
             </p>
           </section>
 
