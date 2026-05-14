@@ -20,19 +20,35 @@ export default function NavLink({
   const pathname = usePathname();
   const isActive = pathname === href;
 
+  if (href === "#") {
+    return (
+      <Tooltip content="Coming soon" placement="bottom">
+        <Link
+          href={href}
+          aria-current={isActive ? "page" : undefined}
+          className={cn(
+            "font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline",
+            className,
+          )}
+          {...rest}
+        >
+          {children}
+        </Link>
+      </Tooltip>
+    );
+  }
+
   return (
-    <Tooltip content="Coming soon" placement="bottom">
-      <Link
-        href={href}
-        aria-current={isActive ? "page" : undefined}
-        className={cn(
-          "font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline",
-          className,
-        )}
-        {...rest}
-      >
-        {children}
-      </Link>
-    </Tooltip>
+    <Link
+      href={href}
+      aria-current={isActive ? "page" : undefined}
+      className={cn(
+        "font-instrument text-neutral-700 decoration-neutral-300 decoration-2 hover:text-black hover:underline",
+        className,
+      )}
+      {...rest}
+    >
+      {children}
+    </Link>
   );
 }
