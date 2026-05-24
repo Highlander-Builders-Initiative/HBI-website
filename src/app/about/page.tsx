@@ -1,39 +1,19 @@
-"use client";
-
 import React from "react";
-import { motion } from "motion/react";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 10 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, ease: "easeOut" },
-};
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background font-sf text-foreground selection:bg-neutral-200">
       <article className="mx-auto max-w-2xl px-6 py-24 md:py-32">
         {/* Header */}
-        <motion.header 
-          initial="initial"
-          animate="animate"
-          variants={fadeInUp}
-          className="mb-16"
-        >
+        <header className="mb-16">
           <h1 className="font-instrument mb-4 text-4xl font-light tracking-tight md:text-5xl">
             Highlander Builders Initiative (HBI)
           </h1>
           <div className="h-px w-full bg-neutral-100" />
-        </motion.header>
+        </header>
 
         {/* Content */}
-        <motion.div 
-          initial="initial"
-          animate="animate"
-          variants={fadeInUp}
-          transition={{ delay: 0.1 }}
-          className="space-y-12 text-lg leading-relaxed font-light text-neutral-800"
-        >
+        <div className="space-y-12 text-lg leading-relaxed font-light text-neutral-800">
           {/* Overview */}
           <section>
             <p>
@@ -105,6 +85,7 @@ export default function AboutPage() {
               <li>Projects run throughout quarters, some spanning multiple.</li>
               <li>Teams are lean and collaborative, where everyone learns together regardless of experience level.</li>
               <li>We host demo days, recruitment events, and community outings.</li>
+              <li>We also build and maintain our own builder-focused platforms for UCR students.</li>
             </ul>
           </section>
 
@@ -120,7 +101,7 @@ export default function AboutPage() {
               We want to see HBI projects evolve into startups, research, and open-source contributions that make an impact beyond campus, with members who go on to lead innovation.
             </p>
           </section>
-        </motion.div>
+        </div>
 
         {/* Footer */}
         <footer className="mt-24 pt-12 border-t border-neutral-100 text-sm text-neutral-400 font-light">
