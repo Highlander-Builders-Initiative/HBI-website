@@ -64,7 +64,7 @@ export default function ProjectsPage() {
             </div>
 
             <div className="flex items-center gap-3">
-              <Link href="https://highlander-hub-six.vercel.app" target="_blank" className="inline-block">
+              <Link href="https://highlanderhub.app" target="_blank" className="inline-block">
                 <Button variant="fancy" className="rounded-full px-4 py-1.5 font-instrument text-sm">
                   View Website
                 </Button>
