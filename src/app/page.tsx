@@ -39,7 +39,7 @@ export default function Home() {
             />
           </div>
           <p className="font-wdxl pt-2 text-xl text-neutral-50 sm:pt-0 sm:text-2xl sm:text-black">
-            LAUNCHING SPRING 2026
+            LAUNCHING FALL 2026
           </p>
           <Link href="/apply" target="_blank">
             <Button
