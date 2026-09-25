@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function AboutPage() {
   return (
@@ -101,6 +103,18 @@ export default function AboutPage() {
               We want to see HBI projects evolve into startups, research, and open-source contributions that make an impact beyond campus, with members who go on to lead innovation.
             </p>
           </section>
+
+          {/* Apply */}
+          <div className="pt-2">
+            <Link href="/apply" target="_blank" className="inline-block">
+              <Button
+                variant="fancy-outline"
+                className="font-instrument rounded-full px-6 py-2 text-base"
+              >
+                Apply
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* Footer */}
